@@ -50,7 +50,6 @@ function Créer_Ennemy () {
     ennemy.set(LedSpriteProperty.Y, Math.abs(coin.get(LedSpriteProperty.X) - 4))
     if (coin.get(LedSpriteProperty.X) == ennemy.get(LedSpriteProperty.X) && coin.get(LedSpriteProperty.X) == ennemy.get(LedSpriteProperty.X)) {
         ennemy.set(LedSpriteProperty.X, Math.abs(coin.get(LedSpriteProperty.X) - 3))
-        ennemy.set(LedSpriteProperty.Y, Math.abs(coin.get(LedSpriteProperty.Y) - 2))
     }
 }
 function Créer_Coin () {
