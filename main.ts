@@ -1,3 +1,25 @@
+function Animation_led () {
+    for (let index = 0; index <= 4; index++) {
+        led.plot(index, 0)
+        basic.pause(100)
+    }
+    for (let index = 0; index <= 4; index++) {
+        led.plot(4, index)
+        basic.pause(100)
+    }
+    i = 4
+    while (i >= 0) {
+        led.plot(i, 4)
+        basic.pause(100)
+        i += -1
+    }
+    i = 4
+    while (i >= 0) {
+        led.plot(0, i)
+        basic.pause(100)
+        i += -1
+    }
+}
 input.onButtonPressed(Button.A, function () {
     game.resume()
     count = 0
@@ -20,7 +42,6 @@ input.onButtonPressed(Button.AB, function () {
         basic.pause(200)
         Créer_Ennemy()
     } else {
-        music.startMelody(music.builtInMelody(Melodies.Wawawawaa), MelodyOptions.Once)
         game.gameOver()
     }
 })
@@ -29,6 +50,7 @@ function Créer_Ennemy () {
     ennemy.set(LedSpriteProperty.Y, Math.abs(coin.get(LedSpriteProperty.X) - 4))
     if (coin.get(LedSpriteProperty.X) == ennemy.get(LedSpriteProperty.X) && coin.get(LedSpriteProperty.X) == ennemy.get(LedSpriteProperty.X)) {
         ennemy.set(LedSpriteProperty.X, Math.abs(coin.get(LedSpriteProperty.X) - 3))
+        ennemy.set(LedSpriteProperty.Y, Math.abs(coin.get(LedSpriteProperty.Y) - 2))
     }
 }
 function Créer_Coin () {
@@ -61,11 +83,14 @@ function avancer () {
     }
 }
 let liste: number[] = []
+let i = 0
 let ennemy: game.LedSprite = null
 let coin: game.LedSprite = null
 let sprite: game.LedSprite = null
 let list: number[] = []
 let count = 0
+Animation_led()
+basic.pause(1000)
 count = 0
 list = [0, 4]
 sprite = game.createSprite(0, 0)
@@ -73,7 +98,7 @@ coin = game.createSprite(list._pickRandom(), randint(1, 4))
 coin.set(LedSpriteProperty.Brightness, 255)
 coin.set(LedSpriteProperty.Blink, 200)
 ennemy = game.createSprite(randint(1, 4), list._pickRandom())
-ennemy.set(LedSpriteProperty.Brightness, 200)
+ennemy.set(LedSpriteProperty.Brightness, 155)
 music.setBuiltInSpeakerEnabled(true)
 basic.forever(function () {
     if (count % 2 == 1) {
@@ -84,7 +109,6 @@ basic.forever(function () {
 })
 basic.forever(function () {
     while (sprite.isTouching(ennemy)) {
-        music.startMelody(music.builtInMelody(Melodies.Wawawawaa), MelodyOptions.Once)
         game.gameOver()
     }
 })
